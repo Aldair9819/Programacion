@@ -1,6 +1,11 @@
 import java.util.Arrays;
+import java.util.Stack;
 
 public class ClasePrimera{
+
+    
+      
+
     
 
     public static void main(String[] args){
@@ -48,7 +53,47 @@ public class ClasePrimera{
     ubicaciones[4] = new Posicion("E", new String[]{"D", "F", "G"});
     ubicaciones[5] = new Posicion("F", new String[]{"A", "B", "C", "D", "E", "G"});
     ubicaciones[6] = new Posicion("G", new String[]{"A"});
+
+    Stack<Posicion> pila = new Stack<Posicion>();
+    pila.push(ubicaciones[0]);
+    DFS(pila, ubicaciones[1], ubicaciones);
+
+    while(!pila.isEmpty()){
+        System.out.println(pila.pop().getNombre());
+    }
     }
 
-    
+public static void DFS(Stack<Posicion> pila,Posicion destino, Posicion[] ubicaciones){
+    if(pila.isEmpty()){
+        System.out.println("Solucion no encontrada");
+        return;
+    }else{
+        Posicion actual = pila.pop();
+        if(actual.getNombre().equals(destino.getNombre())){
+            System.out.println("Llegaste a tu destino");
+            return;
+        }else{
+            String[] vecinos = actual.getVecinos();
+            for(int i=0; i<vecinos.length; i++){
+                Posicion vecino = getPosicion(vecinos[i], ubicaciones);
+                if(!vecino.isVisitado())
+                pila.push(getPosicion(vecinos[i], ubicaciones));
+            }
+        }
+        
+    }
+    DFS(pila, destino, ubicaciones);
 }
+
+public static Posicion getPosicion(String nombre, Posicion[] ubicaciones){
+    for(int i=0; i<ubicaciones.length; i++){
+        if(ubicaciones[i].getNombre().equals(nombre)){
+            System.out.println(ubicaciones[i].getNombre()+"->"+ubicaciones[i].isVisitado());
+            return ubicaciones[i];
+        }
+    }
+    return null;
+}
+}
+
+
