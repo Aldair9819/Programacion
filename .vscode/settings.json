@@ -1,0 +1,13 @@
+{
+    "java.project.sourcePaths": [
+        "Listo",
+        "Graphos",
+        "GraphoV5",
+        "GraphoLunesDFS",
+        "GraphoLunes",
+        "GraphoMartes"
+    ],
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar"
+    ]
+}
