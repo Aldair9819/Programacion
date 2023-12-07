@@ -1,12 +1,12 @@
-
-public class Posicion {
+public class Ubicacion {
     private String nombre;
     private String[] vecinos;
     private boolean visitado;
+    private double distanciaGoal;
 
-    public Posicion(String nombre, String[] vecinos) {
+    public Ubicacion(String nombre, double distanciaGoal) {
         this.nombre = nombre;
-        this.vecinos = vecinos;
+        this.distanciaGoal = distanciaGoal;
         this.visitado = false;
     }
 
@@ -31,7 +31,7 @@ public class Posicion {
     }
 
     public String toString(){
-        return "Hola. Yo soy "+this.nombre+" y listo jajaja \n\n";
+        return "Hola. Yo soy "+this.nombre+" y mi distancia a la meta es:"+this.distanciaGoal;
     }
 
     

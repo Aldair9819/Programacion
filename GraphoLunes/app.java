@@ -16,6 +16,6 @@ public class app {
         v4.setVecinos(List.of(v2, v6));
         v6.setVecinos(List.of(v0));
 
-        new BFS<>(v0).transversar();
+
     }
 }

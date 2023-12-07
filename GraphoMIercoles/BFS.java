@@ -1,20 +1,22 @@
-import java.util.Stack;
+
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Scanner;
 
-
-public class DFS {
+public class BFS {
     private Posicion[] ubicaciones;
-    private Stack<Posicion> F = new Stack<Posicion>();
+    private LinkedList<Posicion> F = new LinkedList<Posicion>();
     private int posicionFinal;
     private ArrayList<Posicion> recorrido = new ArrayList<Posicion>();
+    private Scanner sc = new Scanner(System.in);
 
-    public DFS(Posicion[] ubicaciones, String inicio, String fin) {
+    public BFS(Posicion[] ubicaciones, String inicio, String fin) {
         this.ubicaciones = ubicaciones;
         for(int i=0;i<this.ubicaciones.length;i++){
             if(this.ubicaciones[i].getNombre().equals(inicio)){
                 this.ubicaciones[i].setVisitado(true);
-                F.push(this.ubicaciones[i]);
-                System.out.println("Asignado");
+                F.addLast(this.ubicaciones[i]);
+                System.out.println("Asignado el inicio");
                 break;
             }
         }
@@ -22,7 +24,7 @@ public class DFS {
         for(int i=0;i<this.ubicaciones.length;i++){
             if(this.ubicaciones[i].getNombre().equals(fin)){
                 this.posicionFinal = i;
-                System.out.println("Asignado");
+                System.out.println("Asignado la ruta final");
                 break;
             }
         }
@@ -38,18 +40,40 @@ public class DFS {
         String[] vecinos = EA.getVecinos();
         ArrayList<Posicion> vecinosPosicion = new ArrayList<Posicion>();
         for(int i=0; i<vecinos.length; i++){
-            for(int j=0; j<this.ubicaciones.length; j++){
-                if(vecinos[i].equals(this.ubicaciones[j].getNombre())&&!this.ubicaciones[j].isVisitado()){
-                    vecinosPosicion.add(this.ubicaciones[j]);
-                }
+            if(!getPosicion(vecinos[i]).isVisitado() && !isEnLista(vecinos[i])){
+                vecinosPosicion.add(getPosicion(vecinos[i]));
             }
         }
+
         return vecinosPosicion;
     }
 
-    private Stack<Posicion> insertar(ArrayList<Posicion> vecinos){
+    private Posicion getPosicion(String nommbre){
+        for(int i=0; i<this.ubicaciones.length; i++){
+            if(this.ubicaciones[i].getNombre().equals(nommbre)){
+                return this.ubicaciones[i];
+            }
+        }
+        return null;
+    }
+
+    private boolean isEnLista(String nombre){
+        for(int i=0; i<this.F.size(); i++){
+            if(this.F.get(i).getNombre().equals(nombre)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+
+    private LinkedList<Posicion> insertar(ArrayList<Posicion> vecinos){
+        System.out.println("Vecinos:");
         for(int i=0; i<vecinos.size(); i++){
-            this.F.push(vecinos.get(i));
+            this.F.addLast(vecinos.get(i));
+            System.out.println(vecinos.get(i).getNombre());
         }
         return this.F;
     }
@@ -64,14 +88,14 @@ public class DFS {
         System.out.println("No encontrado");
     }
    
-    private void metodoDFS(Stack<Posicion> F){
-        Posicion EA;
-        ArrayList<Posicion> OS;
+    private void metodoDFS(LinkedList<Posicion> F){
+        Posicion EA; ArrayList<Posicion> OS;
+
         if(F.isEmpty()){
             System.out.println("Solucion no encontrada");
             return;
         }else{
-            EA = F.pop();
+            EA = F.poll();
             this.recorrido.add(EA);
             yaVisitado(EA);
             if(goalTest(EA)){

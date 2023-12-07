@@ -1,6 +1,8 @@
 
+import java.util.ArrayList;
 
-public class ClasePrimera{
+
+public class appMiercoles{
 
     public static void main(String[] args){
     /* 
@@ -15,9 +17,29 @@ public class ClasePrimera{
 
     DFS dfs = new DFS(ubicaciones, "F", "A");
     //*/
-    profe();
+    //profe();
+    
+    ArrayList<String> tabla = LectorTXT.leerTexto();
 
+    for(int i=0;i<tabla.size();i++){
+        String[] datos = tabla.get(i).split(" ");
+        for(int j=0;j<datos.length;j++){
+            System.out.print(datos[j]+"---");
+        }
+        System.out.println();
+    
     }
+    ArrayList<Ubicacion> ubicaciones = new ArrayList<Ubicacion>();
+    for(int i=0;i<tabla.size();i++){
+        ubicaciones.add(new Ubicacion(tabla.get(i).split(" ")[0],Double.parseDouble(tabla.get(i).split(" ")[1])));
+    }
+
+    for(int i=0; ubicaciones.size()>i;i++){
+        System.out.println(ubicaciones.get(i).toString());
+    }
+  
+
+}
 
     public static void profe(){
     Posicion ubicaciones[] = new Posicion[15];
@@ -38,8 +60,8 @@ public class ClasePrimera{
     ubicaciones[13] = new Posicion("14", new String[]{"15"});
     ubicaciones[14] = new Posicion("15", new String[]{"9","12","14"});
 
-    DFS dfs = new DFS(ubicaciones, "1", "9");
-    dfs.recorridoDado();
+    BFS bfs = new BFS(ubicaciones, "1", "9");
+    bfs.recorridoDado();
     }
 
 }

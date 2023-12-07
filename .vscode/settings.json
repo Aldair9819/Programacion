@@ -3,9 +3,10 @@
         "Listo",
         "Graphos",
         "GraphoV5",
+        "GraphoMartes",
         "GraphoLunesDFS",
         "GraphoLunes",
-        "GraphoMartes"
+        "GraphoMiercoles"
     ],
     "java.project.referencedLibraries": [
         "lib/**/*.jar"

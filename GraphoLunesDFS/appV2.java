@@ -1,8 +1,6 @@
 
-import java.util.Deque;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
+
 
 public class appV2 {
     public static void main(String[] args) {
@@ -19,20 +17,11 @@ public class appV2 {
         v4.setVecinos(List.of(v2, v6));
         v6.setVecinos(List.of(v0));
 
-        DFS<Integer> dfs = new DFS<>();
+
         //dfs.transversar(v0);
-        dfs.transversarRecursivo(v0, v4);
 
-        Deque<Vertice<Integer>> revisar = dfs.getChecar();
-        System.out.println("\nRevisando que diablos agarre:\n");
-        while(!revisar.isEmpty()){
-            System.out.println(revisar.pop());
-        }
 
-        Queue<Vertice<Integer>> revisar2 = dfs.getChecar2();
-        System.out.println("\nRevisando que diablos agarre:\n");
-        while(!revisar2.isEmpty()){
-            System.out.println(revisar2.poll());
-        }
+
+
     }
 }
