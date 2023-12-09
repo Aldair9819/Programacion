@@ -17,8 +17,8 @@ public class appMiercoles{
 
     DFS dfs = new DFS(ubicaciones, "F", "A");
     //*/
-    //profe();
-    
+    profe();
+    /* 
     ArrayList<String> tabla = LectorTXT.leerTexto();
 
     for(int i=0;i<tabla.size();i++){
@@ -37,7 +37,7 @@ public class appMiercoles{
     for(int i=0; ubicaciones.size()>i;i++){
         System.out.println(ubicaciones.get(i).toString());
     }
-  
+  //*/ 
 
 }
 

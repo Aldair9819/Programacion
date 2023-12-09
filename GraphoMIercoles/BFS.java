@@ -12,6 +12,7 @@ public class BFS {
 
     public BFS(Posicion[] ubicaciones, String inicio, String fin) {
         this.ubicaciones = ubicaciones;
+        
         for(int i=0;i<this.ubicaciones.length;i++){
             if(this.ubicaciones[i].getNombre().equals(inicio)){
                 this.ubicaciones[i].setVisitado(true);
